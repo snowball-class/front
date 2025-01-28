@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/app/components/ui/footer";
+import Footer from "@/components/ui/footer";
 
 export const metadata: Metadata = {
   title: "Boram3",

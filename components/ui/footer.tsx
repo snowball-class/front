@@ -1,6 +1,6 @@
 "use client";
 
-import BlueButton from "./blueButton";
+import { Button } from "./button";
 
 const Footer = () => {
   return (
@@ -12,11 +12,7 @@ const Footer = () => {
           <div className="">
             &#40;점심시간 13:00 - 14:00 제외 주말/공휴일 제외&#41;
           </div>
-          <BlueButton
-            clickEvent={() => console.log("ㅎㅇ")}
-            bgColor="blue"
-            text="gd"
-          />
+          <Button variant="outline">버튼</Button>
         </div>
         <div className="w-40">bbb</div>
       </div>
