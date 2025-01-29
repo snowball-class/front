@@ -19,13 +19,21 @@ const list = [
 
 export const FooterRight = () => {
   return (
-    <div className="absolute top-0 right-0">
+    <div className="absolute top-0 right-0 flex items-start">
       {list.map((item, index) => (
-        <div key={item.title || index}>
-          <h3>{item.title}</h3>
+        <div
+          key={item.title || index}
+          className="px-6 flex justify-center flex-col items-center "
+        >
+          <div className="font-semibold mb-3">{item.title}</div>
           <ul>
             {item.sub.map((subItem, subIndex) => (
-              <li key={`${item.title}-${subIndex}`}>{subItem}</li>
+              <li
+                className="flex justify-center"
+                key={`${item.title}-${subIndex}`}
+              >
+                {subItem}
+              </li>
             ))}
           </ul>
         </div>
