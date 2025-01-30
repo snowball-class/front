@@ -57,7 +57,7 @@
 
 interface ButtonProps {
   bgColor: 'blue' | 'gray' | 'yellow' | 'none'
-  size: 'default' | 'long'
+  size: 'default' | 'long' | 'small'
   rounded?: boolean
   children: React.ReactNode
 }
@@ -86,7 +86,9 @@ export const Button = (props: ButtonProps) => {
   let btnSize = ''
   if (size === 'default') {
     btnSize = 'py-2 px-8'
-  } else {
+  } else if (size === 'small') {
+    btnSize = 'py-2 px-2'
+  } else if (size === 'long') {
     btnSize = 'w-full py-2'
   }
 
