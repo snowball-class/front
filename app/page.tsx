@@ -2,12 +2,16 @@ import Carousel from '@/components/ui/carousel'
 
 export default function Home() {
   const imageList = [
-    'https://ultra-pet.co.za/wp-content/uploads/2020/08/socialising.jpg',
-    'https://ultra-pet.co.za/wp-content/uploads/2020/04/banner-DOG2-450x450.jpg',
-    'https://ultra-pet.co.za/wp-content/uploads/2020/04/banner-GENERAL-450x450.jpg',
+    '/banner-01.png',
+    '/banner-02.png',
+    '/banner-03.png',
+    '/banner-04.png',
+    '/banner-05.png',
+    '/banner-06.png',
+    '/banner-07.png',
   ]
   return (
-    <div className="w-3/4 h-[300px] mx-auto relative mb-12">
+    <div className="w-3/4 aspect-[970/263] mx-auto relative mb-12  object-cover">
       <Carousel withIndicator images={imageList} />
     </div>
   )
