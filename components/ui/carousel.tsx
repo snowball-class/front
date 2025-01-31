@@ -6,13 +6,20 @@ import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import Image from 'next/image'
+import Card from './card'
+import { CardInfo } from '@/types'
 
 interface CarouselProps {
   withIndicator?: boolean
-  images: string[]
+  images?: string[]
+  cardInfo?: CardInfo[]
 }
 
-const Carousel = ({ images, withIndicator = false }: CarouselProps) => {
+const Carousel = ({
+  images,
+  cardInfo,
+  withIndicator = false,
+}: CarouselProps) => {
   if (withIndicator) {
     return (
       <Swiper
@@ -26,7 +33,7 @@ const Carousel = ({ images, withIndicator = false }: CarouselProps) => {
         }}
         modules={[Pagination]}
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index} className="w-full h-full">
             <Image src={image} alt="carousel" fill className="object-cover" />
           </SwiperSlide>
@@ -34,7 +41,21 @@ const Carousel = ({ images, withIndicator = false }: CarouselProps) => {
       </Swiper>
     )
   } else {
-    return <div></div>
+    return (
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={4}
+        onSlideChange={() => console.log('slide change')}
+        onSwiper={(swiper) => console.log(swiper)}
+        className="w-full h-full mx-auto"
+      >
+        {cardInfo?.map((item, index) => (
+          <SwiperSlide key={index} className="w-full h-full">
+            <Card cardInfo={item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    )
   }
 }
 

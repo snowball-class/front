@@ -1,15 +1,14 @@
 import { Button } from '@/components/ui/button'
+import Title from '@/components/ui/title'
 import Link from 'next/link'
 import React from 'react'
 
 const Login = () => {
   return (
-    <div className="w-full h-[1000px] bg-gray-100">
-      <div className="pt-12 w-full flex justify-center items-center font-semibold text-2xl text-gray-500">
-        로그인
-      </div>
+    <div className="w-full pb-20 bg-gray-100">
+      <Title title="로그인" />
       <div className="w-full flex justify-center items-center mt-12">
-        <div className="w-1/3 h-[500px] bg-white rounded-md px-12 py-16">
+        <div className="w-1/3 bg-white rounded-md px-12 py-16">
           <div className="text-gray-600 font-semibold">이메일</div>
           <input
             className="w-full h-10 rounded-md border border-gray-300 outline-none px-2 py-2 my-4"

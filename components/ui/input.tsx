@@ -1,14 +1,7 @@
 'use client'
 
+import { InputProps } from '@/types'
 import { CiSearch } from 'react-icons/ci'
-
-interface InputProps {
-  type: string
-  placeholder: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  value: string
-  isSearch?: boolean
-}
 
 const Input = ({
   type,
@@ -16,6 +9,7 @@ const Input = ({
   onChange,
   value,
   isSearch,
+  name,
 }: InputProps) => {
   if (isSearch) {
     return (
@@ -27,6 +21,7 @@ const Input = ({
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          name={name}
         />
       </div>
     )
@@ -39,6 +34,7 @@ const Input = ({
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          name={name}
         />
       </div>
     )

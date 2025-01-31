@@ -1,3 +1,5 @@
+import IconBtn from '@/components/home/iconBtn'
+import Popular from '@/components/home/popular'
 import Carousel from '@/components/ui/carousel'
 
 export default function Home() {
@@ -11,8 +13,12 @@ export default function Home() {
     '/banner-07.png',
   ]
   return (
-    <div className="w-3/4 aspect-[970/263] mx-auto relative mb-12  object-cover">
-      <Carousel withIndicator images={imageList} />
+    <div className="w-3/4 mx-auto relative mb-12  object-cover">
+      <div className="aspect-[970/263] ">
+        <Carousel withIndicator images={imageList} />
+      </div>
+      <IconBtn />
+      <Popular />
     </div>
   )
 }
