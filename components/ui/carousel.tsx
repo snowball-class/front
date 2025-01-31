@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -8,6 +8,7 @@ import 'swiper/css/pagination'
 import Image from 'next/image'
 import Card from './card'
 import { CardInfo } from '@/types'
+import CarouselSkeleton from './carousel-skeleton'
 
 interface CarouselProps {
   withIndicator?: boolean
@@ -20,6 +21,10 @@ const Carousel = ({
   cardInfo,
   withIndicator = false,
 }: CarouselProps) => {
+  const [isLoading, setIsLoading] = useState(true)
+  const timer = setTimeout(() => {
+    setIsLoading(false)
+  }, 500)
   if (withIndicator) {
     return (
       <Swiper
@@ -41,16 +46,20 @@ const Carousel = ({
       </Swiper>
     )
   } else {
-    return (
+    // return <CarouselSkeleton />
+
+    return isLoading ? (
+      <CarouselSkeleton />
+    ) : (
       <Swiper
         spaceBetween={10}
         slidesPerView={4}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
-        className="w-full h-full mx-auto"
+        className="mb-12"
       >
         {cardInfo?.map((item, index) => (
-          <SwiperSlide key={index} className="w-full h-full">
+          <SwiperSlide key={index}>
             <Card cardInfo={item} />
           </SwiperSlide>
         ))}
