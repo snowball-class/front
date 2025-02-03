@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/ui/footer'
-import { Noto_Sans } from 'next/font/google'
 import Navbar from '@/components/ui/navbar'
 
 const notoSans = Noto_Sans({

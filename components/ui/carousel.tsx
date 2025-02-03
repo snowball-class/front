@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import Image from 'next/image'
 import Card from './card'
 import { CardInfo } from '@/types'
@@ -21,10 +22,21 @@ const Carousel = ({
   cardInfo,
   withIndicator = false,
 }: CarouselProps) => {
+  const [swiper, setSwiper] = useState<SwiperClass>()
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const timer = setTimeout(() => {
     setIsLoading(false)
   }, 500)
+
+  const handlePrev = () => {
+    swiper?.slidePrev()
+  }
+
+  const handleNext = () => {
+    swiper?.slideNext()
+  }
+
   if (withIndicator) {
     return (
       <Swiper
@@ -46,24 +58,44 @@ const Carousel = ({
       </Swiper>
     )
   } else {
-    // return <CarouselSkeleton />
-
     return isLoading ? (
       <CarouselSkeleton />
     ) : (
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={4}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        className="mb-12"
-      >
-        {cardInfo?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <Card cardInfo={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div>
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={4}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+          navigation={{
+            nextEl: '.swiper-button-nextBtn',
+            prevEl: '.swiper-button-prevBtn',
+          }}
+          modules={[Navigation]}
+        >
+          {cardInfo?.map((item, index) => (
+            <SwiperSlide key={index} className="">
+              <Card cardInfo={item} />
+            </SwiperSlide>
+          ))}
+          <Image
+            src="/prev.png"
+            alt="arrow-left"
+            width={36}
+            height={36}
+            onClick={handlePrev}
+            className="swiper-button-prevBtn absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+          />
+          <Image
+            src="/next.png"
+            alt="arrow-right"
+            width={36}
+            height={36}
+            onClick={handleNext}
+            className="swiper-button-nextBtn absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+          />
+        </Swiper>
+      </div>
     )
   }
 }
