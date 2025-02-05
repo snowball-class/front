@@ -6,6 +6,7 @@ interface ButtonProps {
   rounded?: boolean
   children: React.ReactNode
   href?: string
+  onClick?: (e: React.FormEvent) => void
 }
 
 /**
@@ -16,7 +17,7 @@ interface ButtonProps {
  * @returns
  */
 export const Button = (props: ButtonProps) => {
-  const { children, bgColor, size, rounded, href } = props
+  const { children, bgColor, size, rounded, href, onClick } = props
 
   let backColor = ''
   if (bgColor === 'blue') {
@@ -56,6 +57,8 @@ export const Button = (props: ButtonProps) => {
         ' ' +
         'font-medium text-sm flex justify-center items-center'
       }
+      type={href ? 'button' : 'submit'}
+      onClick={onClick ?? undefined}
     >
       {href ? <Link href={href}>{children}</Link> : children}
     </button>

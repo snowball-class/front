@@ -1,149 +1,72 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import banner01 from '@/public/banner-01.png'
-import banner02 from '@/public/banner-02.png'
-import banner03 from '@/public/banner-03.png'
-import banner04 from '@/public/banner-04.png'
-import banner05 from '@/public/banner-05.png'
-import banner06 from '@/public/banner-06.png'
-import banner07 from '@/public/banner-07.png'
-import Carousel from '@/components/ui/carousel'
-import Input from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-
+import ClassroomTopContent from '@/components/classroom/topContent'
+import Tab from '@/components/classroom/tab'
+import ReplyList from '@/components/classroom/replyList'
 const Classroom = ({ params }: { params: { id: string } }) => {
   const { id } = params
-  const [search, setSearch] = useState('')
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
-  }
-  const classList = [
+  const replyList = [
     {
       id: '1',
-      title: '눈송이와 함께하는 운동루틴',
-      image: banner01,
+      nickname: '홍길동',
+      starCount: 5,
+      content: '좋은 강의입니다.',
+      createdAt: '2024-01-01',
+      isOwner: false,
     },
     {
       id: '2',
-      title: '오늘의 메뉴 고르기',
-      image: banner02,
+      nickname: '김철수',
+      starCount: 4,
+      content: '무난하네요.',
+      createdAt: '2024-01-02',
+      isOwner: true,
     },
     {
       id: '3',
-      title: '미술 클래스',
-      image: banner03,
+      nickname: '이영희',
+      starCount: 3,
+      content: '조금 어렵네요.',
+      createdAt: '2024-01-03',
+      isOwner: false,
     },
     {
       id: '4',
-      title: '인스타에 올리는 영상 편집',
-      image: banner04,
-    },
-    {
-      id: '5',
-      title: '개발이란 무엇인가?',
-      image: banner05,
-    },
-    {
-      id: '6',
-      title: '우리의 첫 취미는 음악이었다',
-      image: banner06,
-    },
-    {
-      id: '7',
-      title: '2025년도에는 외국어 하셔야죠',
-      image: banner07,
-    },
-    {
-      id: '8',
-      title: '당신의 취미는 무엇인가요?',
-      image: banner01,
+      nickname: '박지영',
+      starCount: 2,
+      content: '조금 어렵네요.',
+      createdAt: '2024-01-04',
+      isOwner: false,
     },
   ]
-  const cardInfo = [
+  const [currentTab, setCurrentTab] = useState(0)
+  const handleTabChange = (index: number) => {
+    setCurrentTab(index)
+  }
+  const tabList = [
+    { id: 0, tabName: '클래스 설명', tabContent: <div>소개</div> },
     {
-      id: '1',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어1.jpg',
-    },
-    {
-      id: '2',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어2.jpg',
-    },
-    {
-      id: '3',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어3.jpg',
-    },
-    {
-      id: '4',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어4.jpg',
-    },
-    {
-      id: '5',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어5.jpg',
-    },
-    {
-      id: '6',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어6.jpg',
-    },
-    {
-      id: '7',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어7.jpg',
-    },
-    {
-      id: '8',
-      title: '영어',
-      description: '영어 클래스',
-      price: '100,000원',
-      image: '/categori07/영어8.jpg',
+      id: 1,
+      tabName: '클래스 후기',
+      tabContent: <ReplyList replyList={replyList} />,
     },
   ]
   return (
-    <div className="mt-12 w-3/4 mx-auto relative">
-      <Image
-        src={classList[Number(id)].image}
-        alt="banner"
-        className="w-full h-auto aspect-[970/263] "
+    <>
+      <ClassroomTopContent
+        id={id}
+        subject="영어"
+        title="RP11 이거 하나로 끝!"
+        price="50,000"
+        starCount={3}
       />
-      <div className="text-2xl font-bold h-24">
-        {classList[Number(id)].title}
-      </div>
-      <div className="flex justify-between mb-8">
-        <div className="w-1/3">
-          <Input
-            type="text"
-            placeholder="검색할 클래스명을 입력하세요"
-            onChange={handleSearch}
-            value={search}
-            isSearch
-          />
-        </div>
-        <button>검색</button>
-      </div>
-      <Carousel cardInfo={cardInfo} />
-    </div>
+      <Tab
+        tabList={tabList}
+        currentTab={currentTab}
+        handleTabChange={handleTabChange}
+      />
+    </>
   )
 }
 

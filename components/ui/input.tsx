@@ -10,6 +10,7 @@ const Input = ({
   value,
   isSearch,
   name,
+  onKeyDown,
 }: InputProps) => {
   if (isSearch) {
     return (
@@ -22,6 +23,7 @@ const Input = ({
           onChange={onChange}
           value={value}
           name={name}
+          onKeyDown={onKeyDown}
         />
       </div>
     )

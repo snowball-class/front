@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -10,25 +10,23 @@ import Image from 'next/image'
 import Card from './card'
 import { CardInfo } from '@/types'
 import CarouselSkeleton from './carousel-skeleton'
+import Link from 'next/link'
 
 interface CarouselProps {
   withIndicator?: boolean
-  images?: string[]
   cardInfo?: CardInfo[]
 }
 
-const Carousel = ({
-  images,
-  cardInfo,
-  withIndicator = false,
-}: CarouselProps) => {
+const Carousel = ({ cardInfo, withIndicator = false }: CarouselProps) => {
   const [swiper, setSwiper] = useState<SwiperClass>()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const timer = setTimeout(() => {
     setIsLoading(false)
   }, 500)
-
+  useEffect(() => {
+    timer
+  }, [])
   const handlePrev = () => {
     swiper?.slidePrev()
   }
@@ -50,9 +48,16 @@ const Carousel = ({
         }}
         modules={[Pagination]}
       >
-        {images?.map((image, index) => (
+        {cardInfo?.map((item, index) => (
           <SwiperSlide key={index} className="w-full h-full">
-            <Image src={image} alt="carousel" fill className="object-cover" />
+            <Link href={`${item.href}`}>
+              <Image
+                src={item.image || ''}
+                alt="carousel"
+                fill
+                className="object-cover"
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -58,7 +58,7 @@ const IconBtn = () => {
     <div className="w-full flex flex-wrap justify-around items-center mt-12">
       {icons.map((icon) => (
         <Link
-          href={`/classroom/${icon.id}`}
+          href={`/subject/${icon.id}`}
           key={icon.id}
           className="flex flex-col justify-center items-center cursor-pointer"
         >

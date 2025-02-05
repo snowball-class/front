@@ -1,9 +1,68 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import Title from '@/components/ui/title'
+import { validateEmail } from '@/lib/utils'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
+  const router = useRouter()
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (formData.email === null) {
+      alert('이메일을 입력해주세요')
+      return
+    } else if (formData.password === null) {
+      alert('패스워드를 입력해주세요')
+      return
+    } else if (!validateEmail(formData.email)) {
+      alert('유효한 이메일 주소를 입력해주세요.')
+      return
+    } else {
+      try {
+        const response = await fetch('api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+        if (response.status === 200) {
+          alert('로그인에 성공했습니다.')
+          router.replace('/')
+          return
+        } else {
+          alert(response.statusText)
+          return
+        }
+      } catch (error) {
+        console.error('로그인 오류:', error)
+        alert(console.log(error))
+        return
+      }
+    }
+  }
+
+  const pressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e)
+    }
+  }
+
   return (
     <div className="w-full pb-20 bg-gray-100">
       <Title title="로그인" />
@@ -14,14 +73,22 @@ const Login = () => {
             className="w-full h-10 rounded-md border border-gray-300 outline-none px-2 py-2 my-4"
             type="text"
             placeholder="이메일을 입력해주세요"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            onKeyDown={pressEnter}
           />
           <div className="text-gray-600 font-semibold">비밀번호</div>
           <input
             className="w-full h-10 rounded-md border border-gray-300 outline-none px-2 py-2 my-4"
             type="password"
             placeholder="비밀번호를 입력해주세요"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            onKeyDown={pressEnter}
           />
-          <Button bgColor="blue" size="long">
+          <Button bgColor="blue" size="long" onClick={handleSubmit}>
             이메일 로그인
           </Button>
           <Link

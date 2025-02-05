@@ -3,6 +3,7 @@ import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/ui/footer'
 import Navbar from '@/components/ui/navbar'
+import Modal from '@/components/ui/modal'
 
 const notoSans = Noto_Sans({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={notoSans.className}>
       <body>
+        <Modal />
         <Navbar />
         {children}
         <Footer />

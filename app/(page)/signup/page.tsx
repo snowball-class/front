@@ -3,14 +3,15 @@
 import { Button } from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import Title from '@/components/ui/title'
+import { validateEmail } from '@/lib/utils'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useModalStore } from '@/lib/store'
 
-function validateEmail(email: string) {
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  return emailRegex.test(email)
-}
-
-const Signup = async () => {
+const Signup = () => {
+  const router = useRouter()
+  const { onOpen, isOpen, title, content, setTitle, setContent } =
+    useModalStore()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,16 +27,37 @@ const Signup = async () => {
     }))
   }
 
+  const pressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!validateEmail(formData.email)) {
-      alert('유효한 이메일 주소를 입력해주세요.')
+    if (!formData.name) {
+      onOpen()
+      setTitle('이름을 입력해주세요')
+      return
+    } else if (!formData.email) {
+      onOpen()
+      setTitle('이메일을 입력해주세요')
+      return
+    } else if (!formData.password) {
+      onOpen()
+      setTitle('비밀번호를 입력해주세요')
+      return
+    } else if (!validateEmail(formData.email)) {
+      onOpen()
+      setTitle('이메일 형식이 올바르지 않습니다.')
+      return
+    } else if (formData.password !== formData.passwordCheck) {
+      onOpen()
+      setTitle('비밀번호가 일치하지 않습니다.')
       return
     }
-
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch('/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,10 +65,13 @@ const Signup = async () => {
         body: JSON.stringify(formData),
       })
 
-      if (response.ok) {
-        alert('회원가입이 성공적으로 완료되었습니다!')
+      if (response.status === 200) {
+        onOpen()
+        setTitle('회원가입이 완료되었습니다.')
+        router.replace('/login')
       } else {
-        alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
+        onOpen()
+        setTitle('회원가입 중 오류가 발생했습니다.')
       }
     } catch (error) {
       console.error('회원가입 중 오류가 발생했습니다:', error)
@@ -67,6 +92,7 @@ const Signup = async () => {
               onChange={handleChange}
               value={formData.name}
               name="name"
+              onKeyDown={pressEnter}
             />
             <div className="text-gray-600 font-semibold  mt-4 mb-2">이메일</div>
             <Input
@@ -75,6 +101,7 @@ const Signup = async () => {
               onChange={handleChange}
               value={formData.email}
               name="email"
+              onKeyDown={pressEnter}
             />
 
             <div className="text-gray-600 font-semibold  mt-4 mb-2">
@@ -86,6 +113,7 @@ const Signup = async () => {
               onChange={handleChange}
               value={formData.password}
               name="password"
+              onKeyDown={pressEnter}
             />
             <div className="text-gray-600 font-semibold  mt-4 mb-2">
               비밀번호 확인
@@ -96,9 +124,10 @@ const Signup = async () => {
               onChange={handleChange}
               value={formData.passwordCheck}
               name="passwordCheck"
+              onKeyDown={pressEnter}
             />
             <div className="my-4" />
-            <Button bgColor="blue" size="long">
+            <Button bgColor="blue" size="long" onClick={handleSubmit}>
               회원가입
             </Button>
           </form>
