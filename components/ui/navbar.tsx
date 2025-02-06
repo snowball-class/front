@@ -6,14 +6,9 @@ import { Button } from './button'
 import Image from 'next/image'
 import logo from '@/public/logo.png'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 const Navbar = () => {
-  const cookieStore = cookies()
-  const token = cookieStore.get('token')
-
-  const isLoggedIn = token ? true : false
+  const isLoggedIn = false
   const handleLogout = async () => {
     const response = await fetch('/api/signout', {
       method: 'POST',
