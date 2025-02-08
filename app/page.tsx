@@ -5,15 +5,6 @@ import Popular from '@/components/home/popular'
 import Carousel from '@/components/ui/carousel'
 
 export default function Home() {
-  const imageList = [
-    '/banner-01.png',
-    '/banner-02.png',
-    '/banner-03.png',
-    '/banner-04.png',
-    '/banner-05.png',
-    '/banner-06.png',
-    '/banner-07.png',
-  ]
   const bannerInfo = [
     {
       id: '1',

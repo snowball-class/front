@@ -6,9 +6,12 @@ import { validateEmail } from '@/lib/utils'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useModalStore } from '@/lib/store'
 
 const Login = () => {
   const router = useRouter()
+  const { onOpen, isOpen, title, content, setTitle, setContent } =
+    useModalStore()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -24,13 +27,16 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.email === null) {
-      alert('이메일을 입력해주세요')
+      onOpen()
+      setTitle('이메일을 입력해주세요')
       return
     } else if (formData.password === null) {
-      alert('패스워드를 입력해주세요')
+      onOpen()
+      setTitle('패스워드를 입력해주세요')
       return
     } else if (!validateEmail(formData.email)) {
-      alert('유효한 이메일 주소를 입력해주세요.')
+      onOpen()
+      setTitle('유효한 이메일 주소를 입력해주세요.')
       return
     } else {
       try {
@@ -42,16 +48,19 @@ const Login = () => {
           body: JSON.stringify(formData),
         })
         if (response.status === 200) {
-          alert('로그인에 성공했습니다.')
+          onOpen()
+          setTitle('로그인에 성공했습니다.')
           router.replace('/')
           return
         } else {
-          alert(response.statusText)
+          onOpen()
+          setTitle(response.statusText)
           return
         }
       } catch (error) {
         console.error('로그인 오류:', error)
-        alert(console.log(error))
+        onOpen()
+        setTitle('로그인에 실패했습니다.')
         return
       }
     }

@@ -14,6 +14,7 @@ import Carousel from '@/components/ui/carousel'
 import Input from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import CardList from '@/components/ui/cardList'
+import IconBtn from '@/components/home/iconBtn'
 
 const Subject = ({ params }: { params: { id: string } }) => {
   const { id } = params
@@ -128,22 +129,11 @@ const Subject = ({ params }: { params: { id: string } }) => {
         alt="banner"
         className="w-full h-auto aspect-[970/263] "
       />
+      <IconBtn />
       <div className="text-2xl font-bold mt-12 mb-4">
         {classList[Number(id)].title}
       </div>
-      <div className="flex justify-between mb-8">
-        <div className="w-1/3">
-          <Input
-            type="text"
-            placeholder="검색할 클래스명을 입력하세요"
-            onChange={handleSearch}
-            value={search}
-            isSearch
-          />
-        </div>
-        <button>검색</button>
-      </div>
-      {/* <Carousel cardInfo={cardInfo} /> */}
+
       <CardList cards={cardInfo} />
     </div>
   )
