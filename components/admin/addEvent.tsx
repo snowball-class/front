@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
+import { ko } from 'date-fns/locale'
+
 import Input from '../ui/input'
 import { Calendar } from '../ui/calendar'
 import { DateRange } from 'react-day-picker'
@@ -42,6 +44,7 @@ const AddEvent = () => {
           selected={date}
           onSelect={setDate}
           className="rounded-md border"
+          locale={ko}
         />
       </div>
       <div className="flex justify-between items-center mb-6">
