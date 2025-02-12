@@ -1,5 +1,6 @@
 'use client'
 import CartCard from '@/components/cart/card'
+import { Button } from '@/components/ui/button'
 import Title from '@/components/ui/title'
 import { formatPrice } from '@/lib/utils'
 import { useCallback, useState, ChangeEvent } from 'react'
@@ -23,7 +24,6 @@ const Cart = () => {
       setCheckedItems([])
     }
   }
-
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -73,6 +73,11 @@ const Cart = () => {
         })}
         <div className="w-full flex justify-end font-semibold text-xl py-12">
           총 결제금액 : {formatPrice(10300)}원
+        </div>
+        <div className="flex justify-end mb-12 w-full">
+          <Button bgColor="blue" href="toss" size="default">
+            구매하기
+          </Button>
         </div>
       </form>
     </div>
