@@ -12,8 +12,11 @@ const notoSans = Noto_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Boram3',
-  description: 'This is Boram3 Content',
+  title: 'Snowball',
+  description: 'This is Snowball Content',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

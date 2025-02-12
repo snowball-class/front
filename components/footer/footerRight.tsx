@@ -11,13 +11,9 @@ const list = [
     title: '공지사항',
     sub: ['보람가입', '보람센터', '보람가이드', '채용안내'],
   },
-  {
-    title: 'BORAM3조',
-    sub: ['이다솔', '임현정', '강나리', '조아라', '차동현', '신지환'],
-  },
 ]
 
-export const FooterRight = () => {
+const FooterRight = () => {
   return (
     <div className="absolute top-0 right-0 flex items-start">
       {list.map((item, index) => (
@@ -41,3 +37,5 @@ export const FooterRight = () => {
     </div>
   )
 }
+
+export default FooterRight

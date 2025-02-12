@@ -4,7 +4,7 @@ import React from 'react'
 import Search from './search'
 import { Button } from './button'
 import Image from 'next/image'
-import logo from '@/public/logo.png'
+import logo from '@/public/logo.jpg'
 import Link from 'next/link'
 
 const Navbar = () => {
@@ -34,7 +34,9 @@ const Navbar = () => {
             className="mr-4"
           />
         </Link>
-        <Search />
+        <div className="lg:block hidden">
+          <Search />
+        </div>
       </div>
       <div className="flex">
         {isLoggedIn ? (

@@ -85,6 +85,6 @@ export interface ModalState {
   onClose: () => void
   setTitle: (title: string) => void
   setContent?: (content: string) => void
-  handleSubmit?: () => void
-  setHandleSubmit?: (fn: () => void) => void
+  handleSubmit: () => void
+  setHandleSubmit: (fn: () => void) => void
 }

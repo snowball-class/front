@@ -10,8 +10,16 @@ import { useModalStore } from '@/lib/store'
 
 const Signup = () => {
   const router = useRouter()
-  const { onOpen, isOpen, title, content, setTitle, setContent } =
-    useModalStore()
+  const {
+    onOpen,
+    onClose,
+    isOpen,
+    title,
+    content,
+    setTitle,
+    setContent,
+    setHandleSubmit,
+  } = useModalStore()
   const [formData, setFormData] = useState({
     name: '',
     email: '',

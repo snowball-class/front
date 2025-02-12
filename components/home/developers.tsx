@@ -1,39 +1,43 @@
 import React from 'react'
 import Image from 'next/image'
-import developerImg from '@/public/hyun.png'
 import Link from 'next/link'
+import 찬의 from '@/public/찬의.png'
+import 안병현 from '@/public/안병현.png'
+import 김남주 from '@/public/김남주.png'
+import 다솔 from '@/public/다솔.png'
+import 정길웅 from '@/public/정길웅.png'
 
 const Developers = () => {
   const developerInfo = [
     {
-      name: '김현',
-      image: developerImg,
-      description: '백엔드 개발자',
+      name: '전찬의',
+      image: 찬의,
+      description: '백엔드 개발자/관리자',
+      github: 'https://github.com/jerry0339',
     },
     {
-      name: '김현',
-      image: developerImg,
-      description: '백엔드 개발자',
+      name: '안병현',
+      image: 안병현,
+      description: '백엔드 개발자/결제',
+      github: 'https://github.com/bhyunnie',
     },
     {
-      name: '김현',
-      image: developerImg,
-      description: '백엔드 개발자',
+      name: '김남주',
+      image: 김남주,
+      description: '백엔드 개발자/회원관리',
+      github: 'https://github.com/anjoo-k',
     },
     {
-      name: '김현',
-      image: developerImg,
-      description: '백엔드 개발자',
+      name: '이다솔',
+      image: 다솔,
+      description: '백엔드 개발자/강의',
+      github: 'https://github.com/Leedasol2',
     },
     {
-      name: '김현',
-      image: developerImg,
-      description: '백엔드 개발자',
-    },
-    {
-      name: '김현',
-      image: developerImg,
+      name: '정길웅',
+      image: 정길웅,
       description: '프론트 개발자',
+      github: 'https://github.com/doggysummer',
     },
   ]
   return (
@@ -43,13 +47,14 @@ const Developers = () => {
       </div>
       <div className="flex justify-around">
         {developerInfo.map((developer, i) => (
-          <Link href={`/developers/${developer.name}`} key={i}>
+          <Link href={developer.github} key={i}>
             <div className="flex flex-col items-center">
               <Image
                 src={developer.image}
                 alt={developer.name}
                 width={100}
                 height={100}
+                className="rounded-full w-24 h-24 object-cover"
               />
               <div className="mt-2">{developer.name}</div>
               <div className="text-gray-500">{developer.description}</div>

@@ -31,7 +31,7 @@ const useModalStore = create<ModalState>((set) => ({
   onClose: () => set({ isOpen: false }),
   setTitle: (title: string) => set({ title }),
   setContent: (content: string) => set({ content }),
-  handleSubmit: () => {},
+  handleSubmit: () => set({ isOpen: false }),
   setHandleSubmit: (fn: () => void) => set({ handleSubmit: fn }),
 }))
 

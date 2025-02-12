@@ -58,11 +58,6 @@ const Subject = ({ params }: { params: { id: string } }) => {
       title: '2025년도에는 외국어 하셔야죠',
       image: banner07,
     },
-    {
-      id: '8',
-      title: '당신의 취미는 무엇인가요?',
-      image: banner01,
-    },
   ]
   const cardInfo = [
     {
@@ -127,7 +122,7 @@ const Subject = ({ params }: { params: { id: string } }) => {
       <Image
         src={classList[Number(id) - 1].image}
         alt="banner"
-        className="w-full h-auto aspect-[970/263] "
+        className="w-full aspect-[1140/300] object-cover "
       />
       <IconBtn />
       <div className="text-2xl font-bold mt-12 mb-4">
