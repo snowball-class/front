@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import banner01 from '@/public/banner-01.png'
 import banner02 from '@/public/banner-02.png'
 import banner03 from '@/public/banner-03.png'
@@ -10,53 +9,54 @@ import banner04 from '@/public/banner-04.png'
 import banner05 from '@/public/banner-05.png'
 import banner06 from '@/public/banner-06.png'
 import banner07 from '@/public/banner-07.png'
-import Carousel from '@/components/ui/carousel'
-import Input from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import banner08 from '@/public/banner-08.png'
+
 import CardList from '@/components/ui/cardList'
 import IconBtn from '@/components/home/iconBtn'
 
 const Subject = ({ params }: { params: { id: string } }) => {
   const { id } = params
-  const [search, setSearch] = useState('')
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
-  }
+
   const classList = [
     {
-      id: '1',
+      id: '0',
       title: '눈송이와 함께하는 운동루틴',
       image: banner01,
     },
     {
-      id: '2',
+      id: '1',
       title: '오늘의 메뉴 고르기',
       image: banner02,
     },
     {
-      id: '3',
+      id: '2',
       title: '미술 클래스',
       image: banner03,
     },
     {
-      id: '4',
+      id: '3',
       title: '인스타에 올리는 영상 편집',
       image: banner04,
     },
     {
-      id: '5',
+      id: '4',
       title: '개발이란 무엇인가?',
       image: banner05,
     },
     {
-      id: '6',
+      id: '5',
       title: '우리의 첫 취미는 음악이었다',
       image: banner06,
     },
     {
-      id: '7',
+      id: '6',
       title: '2025년도에는 외국어 하셔야죠',
       image: banner07,
+    },
+    {
+      id: '7',
+      title: '그 외 기타',
+      image: banner08,
     },
   ]
   const cardInfo = [
@@ -120,7 +120,7 @@ const Subject = ({ params }: { params: { id: string } }) => {
   return (
     <div className="mt-12 w-3/4 mx-auto relative">
       <Image
-        src={classList[Number(id) - 1].image}
+        src={classList[Number(id)].image}
         alt="banner"
         className="w-full aspect-[1140/300] object-cover "
       />

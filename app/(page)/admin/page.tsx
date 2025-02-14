@@ -17,11 +17,7 @@ const Admin = () => {
       redirect('/')
     }
 
-    return (
-      <div>
-        <AdminTab />
-      </div>
-    )
+    return <AdminTab />
   } catch (error) {
     redirect('/')
   }

@@ -13,42 +13,42 @@ import Link from 'next/link'
 const IconBtn = () => {
   const icons = [
     {
-      id: 1,
+      id: 0,
       icon: iconC1,
       title: '운동',
     },
     {
-      id: 2,
+      id: 1,
       icon: iconC2,
       title: '요리',
     },
     {
-      id: 3,
+      id: 2,
       icon: iconC3,
       title: '미술',
     },
     {
-      id: 4,
+      id: 3,
       icon: iconC4,
       title: '사진/영상',
     },
     {
-      id: 5,
+      id: 4,
       icon: iconC5,
       title: '개발',
     },
     {
-      id: 6,
+      id: 5,
       icon: iconC6,
       title: '음악',
     },
     {
-      id: 7,
+      id: 6,
       icon: iconC7,
       title: '외국어',
     },
     {
-      id: 8,
+      id: 7,
       icon: iconC8,
       title: '기타',
     },

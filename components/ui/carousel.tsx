@@ -48,9 +48,9 @@ const Carousel = ({ cardInfo, withIndicator = false }: CarouselProps) => {
         }}
         modules={[Pagination]}
       >
-        {cardInfo?.map((item, index) => (
-          <SwiperSlide key={index} className="w-full h-full">
-            <Link href={`${item.href}`}>
+        {cardInfo?.map((item) => (
+          <SwiperSlide key={item.id} className="w-full h-full">
+            <Link href={`/subject/${item.id}`}>
               <Image
                 src={item.image || ''}
                 alt="carousel"

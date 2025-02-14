@@ -2,10 +2,10 @@ import React from 'react'
 
 export interface CardInfo {
   id: string
-  title?: string
+  title: string
   description?: string
-  price?: string
-  image?: string
+  price: string
+  image: string
   href?: string
 }
 

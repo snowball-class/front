@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import ClassroomTopContent from '@/components/classroom/topContent'
 import Tab from '@/components/classroom/tab'
 import ReplyList from '@/components/classroom/replyList'
+import Description from '@/components/classroom/description'
+
 const Classroom = ({ params }: { params: { id: string } }) => {
   const { id } = params
   const replyList = [
@@ -45,7 +47,7 @@ const Classroom = ({ params }: { params: { id: string } }) => {
     setCurrentTab(index)
   }
   const tabList = [
-    { id: 0, tabName: '클래스 설명', tabContent: <div>소개</div> },
+    { id: 0, tabName: '클래스 설명', tabContent: <Description /> },
     {
       id: 1,
       tabName: '클래스 후기',
@@ -55,7 +57,7 @@ const Classroom = ({ params }: { params: { id: string } }) => {
   return (
     <>
       <ClassroomTopContent
-        id={id}
+        id={'0'}
         subject="영어"
         title="RP11 이거 하나로 끝!"
         price="50,000"

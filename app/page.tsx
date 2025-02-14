@@ -7,38 +7,43 @@ import Carousel from '@/components/ui/carousel'
 export default function Home() {
   const bannerInfo = [
     {
-      id: '1',
+      id: '0',
       image: '/banner-01.png',
+      href: '/subject/0',
+    },
+    {
+      id: '1',
+      image: '/banner-02.png',
       href: '/subject/1',
     },
     {
       id: '2',
-      image: '/banner-02.png',
+      image: '/banner-03.png',
       href: '/subject/2',
     },
     {
       id: '3',
-      image: '/banner-03.png',
+      image: '/banner-04.png',
       href: '/subject/3',
     },
     {
       id: '4',
-      image: '/banner-04.png',
+      image: '/banner-05.png',
       href: '/subject/4',
     },
     {
       id: '5',
-      image: '/banner-05.png',
+      image: '/banner-06.png',
       href: '/subject/5',
     },
     {
       id: '6',
-      image: '/banner-06.png',
+      image: '/banner-07.png',
       href: '/subject/6',
     },
     {
       id: '7',
-      image: '/banner-07.png',
+      image: '/banner-08.png',
       href: '/subject/7',
     },
   ]

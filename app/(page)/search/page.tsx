@@ -2,6 +2,8 @@
 
 import CardList from '@/components/ui/cardList'
 import { useSearchParams } from 'next/navigation'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+
 const Search = () => {
   const cardInfo = [
     {
@@ -68,8 +70,10 @@ const Search = () => {
       {search !== 'none' ? (
         <CardList cards={cardInfo} />
       ) : (
-        <div className="text-2xl font-bold mt-12 mb-4">
-          검색 결과가 없습니다.
+        <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
+          <MagnifyingGlassIcon className="w-24 h-24 text-gray-300 mb-4" />
+          <div className="text-2xl font-bold mb-2">검색 결과가 없습니다.</div>
+          <p className="text-gray-500">다른 검색어로 다시 시도해보세요.</p>
         </div>
       )}
     </div>

@@ -1,15 +1,27 @@
+'use client'
+
 import Image from 'next/image'
 import Stars from '@/components/ui/stars'
+import { useModalStore } from '@/lib/store'
 import { ClassroomTopContentProps } from '@/types'
-import { Button } from '../ui/button'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const ClassroomTopContent = (props: ClassroomTopContentProps) => {
   const { id, subject, title, price, starCount } = props
+  const { onOpen, onClose, setTitle, setHandleSubmit } = useModalStore()
+  const router = useRouter()
+  const handleOpen = () => {
+    onOpen()
+    setTitle('장바구니에 담겼습니다. 장바구니를 확인해보시겠습니까?')
+    setHandleSubmit(() => {
+      onClose()
+      router.push('/cart')
+    })
+  }
   return (
     <div className="flex justify-around w-3/4 mx-auto mb-12">
       <Image
-        src={`/categori07/영어${id}.jpg`}
+        src={`/categori07/영어11.jpg`}
         alt="classroom"
         width={800}
         height={480}
@@ -21,13 +33,13 @@ const ClassroomTopContent = (props: ClassroomTopContentProps) => {
           <div className="text-xl">{title}</div>
           <div className="text-xl mt-2">{price}원</div>
         </div>
-        <Link
-          href="/cart"
+        <button
+          onClick={handleOpen}
           className="flex items-center text-lg justify-center gap-2 w-full py-2 border border-mainBlue bg-blue-100 bg-opacity-40 text-mainBlue rounded-lg"
         >
           <Image src="/ico-cart.png" alt="cart" width={24} height={24} />
           장바구니 담기
-        </Link>
+        </button>
       </div>
     </div>
   )
