@@ -7,12 +7,17 @@ export interface BannerInfo {
 }
 
 export interface CardInfo {
-  id: string
+  lessonId: number
   title: string
-  description?: string
-  price: string
-  image: string
-  href?: string
+  categoryId: number
+  description: string
+  netPrice: number
+  salePrice: number
+  thumbnail: string
+  eventId: number
+  discountRate: number
+  discountStartDate: string
+  discountFinishDate: string
 }
 
 export interface InputProps {

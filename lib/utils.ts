@@ -18,3 +18,10 @@ export function formatPrice(price: number) {
 export function generateOrderId() {
   return uuidv4()
 }
+
+export function pagination(totalPages: number, currentPage: number) {
+  return {
+    totalPages,
+    currentPage,
+  }
+}

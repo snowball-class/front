@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { CardInfo } from '@/types'
 import Link from 'next/link'
+import { formatPrice } from '@/lib/utils'
 
 interface CardProps {
   cardInfo: CardInfo
@@ -9,33 +10,23 @@ interface CardProps {
 
 const Card = ({ cardInfo }: CardProps) => {
   return (
-    <>
-      {cardInfo.href ? (
-        <Link href={cardInfo.href}>
-          <div className="block">
-            <Image
-              src={cardInfo.image}
-              alt={cardInfo.title}
-              width={300}
-              height={10}
-            />
-            <div className="my-1">{cardInfo.description}</div>
-            <div className="text-sm">{cardInfo.price}</div>
-          </div>
-        </Link>
-      ) : (
-        <div className="block">
+    <Link href={`/classroom/${cardInfo.lessonId}`}>
+      <div className="block">
+        {cardInfo.thumbnail ? (
           <Image
-            src={cardInfo.image}
+            src={cardInfo.thumbnail}
             alt={cardInfo.title}
             width={300}
             height={10}
           />
-          <div className="my-1">{cardInfo.description}</div>
-          <div className="text-sm">{cardInfo.price}</div>
-        </div>
-      )}
-    </>
+        ) : (
+          <div className="w-full h-48 bg-gray-200"></div>
+        )}
+
+        <div className="my-1">{cardInfo.title}</div>
+        <div className="text-sm">{formatPrice(cardInfo.netPrice) + '원'}</div>
+      </div>
+    </Link>
   )
 }
 

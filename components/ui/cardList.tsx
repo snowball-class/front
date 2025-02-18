@@ -17,7 +17,7 @@ const CardList = (props: CardListProps) => {
     <div className="mb-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {cards.map((card) => (
-          <Card key={card.id} cardInfo={card} />
+          <Card key={card.lessonId} cardInfo={card} />
         ))}
       </div>
       <Pagination
