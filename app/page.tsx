@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <div className="w-3/4 mx-auto relative mb-12  object-cover">
       <div className="aspect-[1140/300]">
-        <Carousel withIndicator cardInfo={bannerInfo} />
+        <Carousel withIndicator bannerInfo={bannerInfo} />
       </div>
       <IconBtn />
       <Popular />

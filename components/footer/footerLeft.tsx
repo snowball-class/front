@@ -19,7 +19,7 @@ const FooterLeft = () => {
       <div className="font-semibold">
         &#40;점심시간 13:00 - 14:00 제외 주말/공휴일 제외&#41;
       </div>
-      <div className="flex justify-between w-[350px] mb-12 mt-1">
+      <div className="flex justify-between w-[350px] mb-12 mt-1 text-xs">
         <Button bgColor="blue" size="default" rounded onClick={onclickBtn}>
           <FaApple className="mr-4" />
           APP STORE

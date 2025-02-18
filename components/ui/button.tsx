@@ -55,7 +55,7 @@ export const Button = (props: ButtonProps) => {
         ' ' +
         roundedBtn +
         ' ' +
-        'font-medium text-sm flex justify-center items-center'
+        'font-medium flex justify-center items-center'
       }
       type={href ? 'button' : 'submit'}
       onClick={onClick ?? undefined}

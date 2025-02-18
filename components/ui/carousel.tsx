@@ -8,16 +8,21 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import Image from 'next/image'
 import Card from './card'
-import { CardInfo } from '@/types'
+import { BannerInfo, CardInfo } from '@/types'
 import CarouselSkeleton from './carousel-skeleton'
 import Link from 'next/link'
 
 interface CarouselProps {
   withIndicator?: boolean
   cardInfo?: CardInfo[]
+  bannerInfo?: BannerInfo[]
 }
 
-const Carousel = ({ cardInfo, withIndicator = false }: CarouselProps) => {
+const Carousel = ({
+  cardInfo,
+  bannerInfo,
+  withIndicator = false,
+}: CarouselProps) => {
   const [swiper, setSwiper] = useState<SwiperClass>()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -48,7 +53,7 @@ const Carousel = ({ cardInfo, withIndicator = false }: CarouselProps) => {
         }}
         modules={[Pagination]}
       >
-        {cardInfo?.map((item) => (
+        {bannerInfo?.map((item) => (
           <SwiperSlide key={item.id} className="w-full h-full">
             <Link href={`/subject/${item.id}`}>
               <Image

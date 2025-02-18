@@ -1,5 +1,11 @@
 import React from 'react'
 
+export interface BannerInfo {
+  id: string
+  image: string
+  href: string
+}
+
 export interface CardInfo {
   id: string
   title: string
