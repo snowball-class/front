@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 
 const Admin = () => {
   try {
-    const token = cookies().get('token')?.value
+    const token = cookies().get('accessToken')?.value
     if (!token) {
       redirect('/')
     }

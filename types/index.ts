@@ -55,9 +55,9 @@ export interface ReplyListProps {
 
 export interface ClassroomTopContentProps {
   id: string
-  subject: string
+  category: string
   title: string
-  price: string
+  price: number
   starCount: number
 }
 
@@ -98,4 +98,23 @@ export interface ModalState {
   setContent?: (content: string) => void
   handleSubmit: () => void
   setHandleSubmit: (fn: () => void) => void
+}
+
+export interface ItemDetail {
+  lessonId: number
+  title: string
+  categoryId: number
+  description: string
+  netPrice: number
+  salePrice: number
+  thumbnail: string
+  rating: number
+  instructor: string
+  replyList: ReplyProps[]
+}
+
+export interface CartState {
+  cartItems: ItemDetail[]
+  addItem: (item: ItemDetail) => void
+  deleteItem: (item: ItemDetail) => void
 }

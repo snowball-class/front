@@ -1,3 +1,4 @@
+import { CardInfo } from '@/types'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,9 +20,12 @@ export function generateOrderId() {
   return uuidv4()
 }
 
-export function pagination(totalPages: number, currentPage: number) {
-  return {
-    totalPages,
-    currentPage,
-  }
+export function pagingFunction(currentPage: number, totalData: any[]) {
+  const displayedDataLength = 8
+  const totalPages = Math.ceil(totalData.length / displayedDataLength)
+  const startIndex = (currentPage - 1) * displayedDataLength
+  const endIndex = startIndex + 7
+  const displayedData: CardInfo[] = totalData.slice(startIndex, endIndex + 1)
+
+  return { totalPages, displayedData }
 }

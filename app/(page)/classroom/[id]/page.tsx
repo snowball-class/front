@@ -46,6 +46,14 @@ const Classroom = ({ params }: { params: { id: string } }) => {
   const handleTabChange = (index: number) => {
     setCurrentTab(index)
   }
+
+  const classData = {
+    id: id,
+    category: '영어',
+    title: 'RP11 이거 하나로 끝!',
+    price: 50000,
+    starCount: 3,
+  }
   const tabList = [
     { id: 0, tabName: '클래스 설명', tabContent: <Description /> },
     {
@@ -56,13 +64,7 @@ const Classroom = ({ params }: { params: { id: string } }) => {
   ]
   return (
     <>
-      <ClassroomTopContent
-        id={'0'}
-        subject="영어"
-        title="RP11 이거 하나로 끝!"
-        price="50,000"
-        starCount={3}
-      />
+      <ClassroomTopContent {...classData} />
       <Tab
         tabList={tabList}
         currentTab={currentTab}

@@ -2,13 +2,15 @@
 
 import Image from 'next/image'
 import Stars from '@/components/ui/stars'
-import { useModalStore } from '@/lib/store'
+import { useCartStore, useModalStore } from '@/lib/store'
 import { ClassroomTopContentProps } from '@/types'
 import { useRouter } from 'next/navigation'
+import { formatPrice } from '@/lib/utils'
 
 const ClassroomTopContent = (props: ClassroomTopContentProps) => {
-  const { id, subject, title, price, starCount } = props
+  const { id, category, title, price, starCount } = props
   const { onOpen, onClose, setTitle, setHandleSubmit } = useModalStore()
+  const { addItem } = useCartStore()
   const router = useRouter()
   const handleOpen = () => {
     onOpen()
@@ -16,6 +18,7 @@ const ClassroomTopContent = (props: ClassroomTopContentProps) => {
     setHandleSubmit(() => {
       onClose()
       router.push('/cart')
+      // addItem()
     })
   }
   return (
@@ -28,10 +31,10 @@ const ClassroomTopContent = (props: ClassroomTopContentProps) => {
       />
       <div className="ml-12 w-full flex flex-col justify-between">
         <div className="">
-          <div className="text-gray-500 mb-4">{subject}</div>
+          <div className="text-gray-500 mb-4">{category}</div>
           <Stars starCount={starCount} />
           <div className="text-xl">{title}</div>
-          <div className="text-xl mt-2">{price}원</div>
+          <div className="text-xl mt-2">{formatPrice(price)}원</div>
         </div>
         <button
           onClick={handleOpen}

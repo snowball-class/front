@@ -1,5 +1,12 @@
 import { create } from 'zustand'
-import { UserInfo, UserInfoState, ModalState } from '@/types'
+import {
+  UserInfo,
+  UserInfoState,
+  ModalState,
+  CardInfo,
+  CartState,
+  ItemDetail,
+} from '@/types'
 
 const userInfoExample: UserInfo = {
   id: 'qwer',
@@ -35,4 +42,16 @@ const useModalStore = create<ModalState>((set) => ({
   setHandleSubmit: (fn: () => void) => set({ handleSubmit: fn }),
 }))
 
-export { useUserStore, useModalStore }
+const useCartStore = create<CartState>((set) => ({
+  cartItems: [],
+  addItem: (item: ItemDetail) =>
+    set((state) => ({ cartItems: [...state.cartItems, item] })),
+  deleteItem: (item: ItemDetail) =>
+    set((state) => ({
+      cartItems: state.cartItems.filter(
+        (item) => item.lessonId !== item.lessonId
+      ),
+    })),
+}))
+
+export { useUserStore, useModalStore, useCartStore }

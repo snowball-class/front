@@ -28,7 +28,7 @@ const Carousel = ({
   const [isLoading, setIsLoading] = useState(true)
   const timer = setTimeout(() => {
     setIsLoading(false)
-  }, 500)
+  }, 100)
   useEffect(() => {
     timer
   }, [])
