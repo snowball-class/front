@@ -1,5 +1,4 @@
 import CardList from '@/components/ui/cardList'
-import { useSearchParams } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { CardInfo } from '@/types'
 const Search = async ({ searchParams }: { searchParams: { q: string } }) => {

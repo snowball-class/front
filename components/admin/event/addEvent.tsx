@@ -3,11 +3,10 @@
 import React, { useState } from 'react'
 import { ko } from 'date-fns/locale'
 
-import Input from '../ui/input'
-import { Calendar } from '../ui/calendar'
+import Input from '@/components/ui/input'
+import { Calendar } from '@/components/ui/calendar'
 import { DateRange } from 'react-day-picker'
-import { Button } from '../ui/button'
-import EventList from './event/eventList'
+import { Button } from '@/components/ui/button'
 
 const AddEvent = () => {
   const [title, setTitle] = useState('')
@@ -21,11 +20,6 @@ const AddEvent = () => {
     dateFrom: date?.from,
     dateTo: date?.to,
   })
-  const [classes, setClasses] = useState([
-    '거리두기 해제! 보복회식엔 황태미역국',
-    '봉고데기 입문',
-    '밥 한공기 뚝딱! 사먹는 김치찌게 대신 만드는 햄 김치찌게',
-  ])
 
   return (
     <div className="w-1/2 mt-6 ">
@@ -63,7 +57,6 @@ const AddEvent = () => {
           이벤트 추가
         </Button>
       </div>
-      <EventList search={title} />
     </div>
   )
 }
