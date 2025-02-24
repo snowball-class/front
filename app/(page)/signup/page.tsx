@@ -22,6 +22,7 @@ const Signup = () => {
   } = useModalStore()
   const [formData, setFormData] = useState({
     name: '',
+    nickname: '',
     email: '',
     password: '',
     passwordCheck: '',
@@ -65,7 +66,8 @@ const Signup = () => {
       return
     }
     try {
-      const response = await fetch('/api/signup', {
+      const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ const Signup = () => {
     <div className="w-full pb-20 bg-gray-100">
       <Title title="스노우볼에 오신 것을 환영합니다!" />
       <div className="w-full flex justify-center items-center mt-12">
-        <div className="w-1/3 bg-white rounded-md px-12 py-16">
+        <div className="lg:w-1/3 w-[90%] bg-white rounded-md px-12 py-16">
           <form method="POST" action="/api/auth/signup" onSubmit={handleSubmit}>
             <div className="text-gray-600 font-semibold  mt-4 mb-2">이름</div>
             <Input
@@ -100,6 +102,15 @@ const Signup = () => {
               onChange={handleChange}
               value={formData.name}
               name="name"
+              onKeyDown={pressEnter}
+            />
+            <div className="text-gray-600 font-semibold  mt-4 mb-2">닉네임</div>
+            <Input
+              type="text"
+              placeholder="닉네임을 입력해주세요"
+              onChange={handleChange}
+              value={formData.nickname}
+              name="nickname"
               onKeyDown={pressEnter}
             />
             <div className="text-gray-600 font-semibold  mt-4 mb-2">이메일</div>

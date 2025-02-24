@@ -11,6 +11,7 @@ import Card from './card'
 import { BannerInfo, CardInfo } from '@/types'
 import CarouselSkeleton from './carousel-skeleton'
 import Link from 'next/link'
+import { useMediaQuery } from 'react-responsive'
 
 interface CarouselProps {
   withIndicator?: boolean
@@ -32,6 +33,7 @@ const Carousel = ({
   useEffect(() => {
     timer
   }, [])
+  const isDesktop = useMediaQuery({ minWidth: 768 })
   const handlePrev = () => {
     swiper?.slidePrev()
   }
@@ -40,18 +42,18 @@ const Carousel = ({
     swiper?.slideNext()
   }
 
+  const updateIndex = (swiperInstance: SwiperClass) => {
+    setCurrentIndex(swiperInstance.realIndex)
+  }
+
   if (withIndicator) {
-    return (
+    return (<>
       <Swiper
+        onSwiper={setSwiper}
+        onSlideChange={(swiperInstance) => updateIndex(swiperInstance)}
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        className="w-full h-full mx-auto"
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
+        className="w-full sm:h-full h-32 mx-auto"
       >
         {bannerInfo?.map((item) => (
           <SwiperSlide key={item.id} className="w-full h-full">
@@ -66,6 +68,17 @@ const Carousel = ({
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="flex gap-2 justify-center mt-4">
+        {bannerInfo?.map((_, index) => (
+          <button
+            key={index}
+            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'
+              }`}
+            onClick={() => swiper?.slideTo(index)}
+          />
+        ))}
+      </div>
+    </>
     )
   } else {
     return isLoading ? (
@@ -74,9 +87,7 @@ const Carousel = ({
       <div>
         <Swiper
           spaceBetween={10}
-          slidesPerView={4}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
+          slidesPerView={isDesktop ? 4 : 1}
           navigation={{
             nextEl: '.swiper-button-nextBtn',
             prevEl: '.swiper-button-prevBtn',

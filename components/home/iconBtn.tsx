@@ -13,49 +13,49 @@ import Link from 'next/link'
 const IconBtn = () => {
   const icons = [
     {
-      id: 0,
+      id: 1,
       icon: iconC1,
       title: '개발',
     },
     {
-      id: 1,
+      id: 2,
       icon: iconC2,
       title: '음악',
     },
     {
-      id: 2,
+      id: 3,
       icon: iconC3,
       title: '운동',
     },
     {
-      id: 3,
+      id: 4,
       icon: iconC4,
       title: '요리',
     },
     {
-      id: 4,
+      id: 5,
       icon: iconC5,
       title: '외국어',
     },
     {
-      id: 5,
+      id: 6,
       icon: iconC6,
       title: '사진/영상',
     },
     {
-      id: 6,
+      id: 7,
       icon: iconC7,
       title: '미술',
     },
     {
-      id: 7,
+      id: 8,
       icon: iconC8,
       title: '기타',
     },
   ]
 
   return (
-    <div className="w-full flex flex-wrap justify-around items-center mt-12">
+    <div className="w-full flex flex-wrap justify-around items-center mt-12 ">
       {icons.map((icon) => (
         <Link
           href={`/subject/${icon.id}`}

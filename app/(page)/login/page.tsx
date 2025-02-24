@@ -82,7 +82,7 @@ const Login = () => {
     <div className="w-full pb-20 bg-gray-100">
       <Title title="로그인" />
       <div className="w-full flex justify-center items-center mt-12">
-        <div className="w-1/3 bg-white rounded-md px-12 py-16">
+        <div className="lg:w-1/3 w-[90%] bg-white rounded-md px-12 py-16">
           <div className="text-gray-600 font-semibold">이메일</div>
           <input
             className="w-full h-10 rounded-md border border-gray-300 outline-none px-2 py-2 my-4"

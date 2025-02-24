@@ -31,13 +31,13 @@ const Subject = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="mt-12 w-3/4 mx-auto relative">
       <Image
-        src={bannerPic[Number(id)]}
+        src={bannerPic[Number(id)-1]}
         alt="banner"
         className="w-full aspect-[1140/300] object-cover "
       />
       <IconBtn />
       <div className="text-2xl font-bold mt-12 mb-4">
-        {bannerInfo[Number(id)].title}
+        {bannerInfo[Number(id)-1].title}
       </div>
 
       <CardList cards={cards} />

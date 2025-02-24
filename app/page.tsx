@@ -12,7 +12,7 @@ export default async function Home() {
   const cardInfo = await data.json()
 
   return (
-    <div className="w-3/4 mx-auto relative mb-12  object-cover">
+    <div className=" md:w-3/4 mx-auto relative mb-12 object-cover w-[90%]">
       <div className="aspect-[1140/300]">
         <Carousel withIndicator bannerInfo={bannerInfo} />
       </div>
