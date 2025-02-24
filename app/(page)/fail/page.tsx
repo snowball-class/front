@@ -1,8 +1,9 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-export default function FailPage() {
+function FailPageContent() {
   const searchParams = useSearchParams()
 
   return (
@@ -41,5 +42,13 @@ export default function FailPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function FailPage() {
+  return (
+    <Suspense fallback={<div>로딩중...</div>}>
+      <FailPageContent />
+    </Suspense>
   )
 }

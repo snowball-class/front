@@ -40,27 +40,33 @@ const Login = () => {
       return
     } else {
       try {
-        const response = await fetch('api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        })
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_MEMBER_API + '/sign-in',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          }
+        )
         if (response.status === 200) {
+          const data = await response.json()
+          console.log(data)
+          localStorage.setItem('token', data.data.token)
           onOpen()
           setTitle('로그인에 성공했습니다.')
           router.replace('/')
           return
         } else {
+          setTitle('아이디 또는 비밀번호가 일치하지 않습니다.')
           onOpen()
-          setTitle(response.statusText)
           return
         }
       } catch (error) {
         console.error('로그인 오류:', error)
+        setTitle('아이디 또는 비밀번호가 일치하지 않습니다.')
         onOpen()
-        setTitle('로그인에 실패했습니다.')
         return
       }
     }

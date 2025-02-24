@@ -1,4 +1,4 @@
-import { ItemDetail } from './types'
+import { CardInfo, ItemDetail } from './types'
 
 export const bannerInfo = [
   {
@@ -135,5 +135,60 @@ export const itemDummy: ItemDetail[] = [
         isOwner: false,
       },
     ],
+  },
+]
+
+export const cardDummy: CardInfo[] = [
+  {
+    lessonId: 1,
+    title: '프론트엔드 마스터 클래스',
+    categoryId: 1,
+    description: 'React와 TypeScript로 배우는 현대적인 웹 개발',
+    netPrice: 99000,
+    salePrice: 79000,
+    thumbnail: '',
+    eventId: 1,
+    discountRate: 20,
+    discountStartDate: '2024-03-01',
+    discountFinishDate: '2024-04-01',
+  },
+  {
+    lessonId: 2,
+    title: '백엔드 실전 프로젝트',
+    categoryId: 2,
+    description: 'Node.js와 Express로 구현하는 서버 개발',
+    netPrice: 120000,
+    salePrice: 108000,
+    thumbnail: '',
+    eventId: 2,
+    discountRate: 10,
+    discountStartDate: '2024-03-01',
+    discountFinishDate: '2024-04-01',
+  },
+  {
+    lessonId: 3,
+    title: 'DevOps 입문 가이드',
+    categoryId: 3,
+    description: 'Docker와 Kubernetes 완벽 마스터',
+    netPrice: 150000,
+    salePrice: 135000,
+    thumbnail: '',
+    eventId: 3,
+    discountRate: 10,
+    discountStartDate: '2024-03-01',
+    discountFinishDate: '2024-04-01',
+  },
+  {
+    lessonId: 4,
+    title: '데이터 사이언스 기초',
+    categoryId: 4,
+    description: 'Python과 pandas를 활용한 데이터 분석',
+    netPrice: 89000,
+    salePrice: 79000,
+    thumbnail: '',
+    eventId: 4,
+    discountRate: 11,
+    discountStartDate: '2024-03-01',
+    discountFinishDate: '2024-04-01',
   },
 ]
