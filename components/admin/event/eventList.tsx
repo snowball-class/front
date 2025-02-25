@@ -10,6 +10,9 @@ const EventList = ({ search }: { search: string }) => {
       try {
         const res = await fetch(url, {
           method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
         const data = await res.json()
         cardData = data.data

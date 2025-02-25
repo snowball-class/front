@@ -118,3 +118,21 @@ export interface CartState {
   addItem: (item: ItemDetail) => void
   deleteItem: (item: ItemDetail) => void
 }
+
+export interface ClassroomDetail {
+  lessonId?: number
+  categoryId?: number
+  categoryName?: string
+  title?: string
+  content1?: string
+  content2?: string | null
+  thumbnail?: string
+  tutor?: string
+  netPrice?: number
+  salePrice?: number
+  starRating?: number
+  eventId?: number
+  discountRate?: number
+  discountStartDate?: string | null
+  discountFinishDate?: string | null
+}

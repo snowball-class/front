@@ -1,11 +1,15 @@
 'use client'
 
-import React from 'react'
 import { PaginationProps } from '@/types'
+import React, { useEffect, useState } from 'react'
 
 const Pagination = (props: PaginationProps) => {
   const { totalPages, currentPage, onPageChange } = props
 
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   const renderPageNumbers = () => {
     const pages = []
     // 현재 페이지가 속한 그룹의 시작과 끝 페이지 계산
@@ -70,31 +74,7 @@ const Pagination = (props: PaginationProps) => {
 
   return (
     <div className="flex items-center justify-center space-x-2 my-4">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={`px-4 py-1 rounded ${
-          currentPage === 1
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-gray-200 hover:bg-gray-300'
-        }`}
-      >
-        이전
-      </button>
-
-      {renderPageNumbers()}
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className={`px-4 py-1 rounded ${
-          currentPage === totalPages
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-gray-200 hover:bg-gray-300'
-        }`}
-      >
-        다음
-      </button>
+      {isClient && renderPageNumbers()}
     </div>
   )
 }

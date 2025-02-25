@@ -3,15 +3,24 @@
 import Image from 'next/image'
 import Stars from '@/components/ui/stars'
 import { useCartStore, useModalStore } from '@/lib/store'
-import { ClassroomTopContentProps } from '@/types'
+import { ClassroomDetail } from '@/types'
 import { useRouter } from 'next/navigation'
 import { formatPrice } from '@/lib/utils'
 
-const ClassroomTopContent = (props: ClassroomTopContentProps) => {
-  const { id, category, title, price, starCount } = props
+const ClassroomTopContent = (props: ClassroomDetail) => {
+  const {
+    lessonId,
+    categoryName,
+    title,
+    thumbnail,
+    starRating,
+    netPrice,
+    salePrice,
+  } = props
   const { onOpen, onClose, setTitle, setHandleSubmit } = useModalStore()
   const { addItem } = useCartStore()
   const router = useRouter()
+
   const handleOpen = () => {
     onOpen()
     setTitle('장바구니에 담겼습니다. 장바구니를 확인해보시겠습니까?')
@@ -23,18 +32,29 @@ const ClassroomTopContent = (props: ClassroomTopContentProps) => {
   }
   return (
     <div className="flex justify-around w-3/4 mx-auto mb-12">
-      <Image
-        src={`/categori07/영어11.jpg`}
-        alt="classroom"
-        width={800}
-        height={480}
-      />
+      {thumbnail ? (
+        <Image src={thumbnail} alt="classroom" width={800} height={480} />
+      ) : (
+        <div className="w-[800px] h-[400px] bg-gray-300" />
+      )}
       <div className="ml-12 w-full flex flex-col justify-between">
         <div className="">
-          <div className="text-gray-500 mb-4">{category}</div>
-          <Stars starCount={starCount} />
+          <div className="text-gray-500 mb-4">{categoryName}</div>
+          <Stars starCount={starRating ?? 0} />
           <div className="text-xl">{title}</div>
-          <div className="text-xl mt-2">{formatPrice(price)}원</div>
+          {salePrice === 0 ? (
+            <div className="text-xl mt-2">{formatPrice(netPrice ?? 0)}원</div>
+          ) : (
+            <div className="flex items-center">
+              <span className="text-xl mt-2 line-through">
+                {formatPrice(netPrice ?? 0)}원
+              </span>
+              <span className="mx-4">&rarr;</span>
+              <span className="text-xl mt-2 ">
+                {formatPrice(salePrice ?? 0)}원
+              </span>
+            </div>
+          )}
         </div>
         <button
           onClick={handleOpen}

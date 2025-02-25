@@ -47,38 +47,40 @@ const Carousel = ({
   }
 
   if (withIndicator) {
-    return (<>
-      <Swiper
-        onSwiper={setSwiper}
-        onSlideChange={(swiperInstance) => updateIndex(swiperInstance)}
-        spaceBetween={50}
-        slidesPerView={1}
-        className="w-full sm:h-full h-32 mx-auto"
-      >
-        {bannerInfo?.map((item) => (
-          <SwiperSlide key={item.id} className="w-full h-full">
-            <Link href={`/subject/${item.id}`}>
-              <Image
-                src={item.image || ''}
-                alt="carousel"
-                fill
-                className="object-cover"
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="flex gap-2 justify-center mt-4">
-        {bannerInfo?.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'
+    return (
+      <>
+        <Swiper
+          onSwiper={setSwiper}
+          onSlideChange={(swiperInstance) => updateIndex(swiperInstance)}
+          spaceBetween={50}
+          slidesPerView={1}
+          className="w-full sm:h-full h-32 mx-auto"
+        >
+          {bannerInfo?.map((item) => (
+            <SwiperSlide key={item.id} className="w-full h-full">
+              <Link href={`/subject/${item.id}`}>
+                <Image
+                  src={item.image || ''}
+                  alt="carousel"
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="flex gap-2 justify-center mt-4">
+          {bannerInfo?.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full ${
+                currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'
               }`}
-            onClick={() => swiper?.slideTo(index)}
-          />
-        ))}
-      </div>
-    </>
+              onClick={() => swiper?.slideTo(index)}
+            />
+          ))}
+        </div>
+      </>
     )
   } else {
     return isLoading ? (
@@ -99,22 +101,24 @@ const Carousel = ({
               <Card cardInfo={item} />
             </SwiperSlide>
           ))}
-          <Image
-            src="/prev.png"
-            alt="arrow-left"
-            width={36}
-            height={36}
-            onClick={handlePrev}
-            className="swiper-button-prevBtn absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
-          />
-          <Image
-            src="/next.png"
-            alt="arrow-right"
-            width={36}
-            height={36}
-            onClick={handleNext}
-            className="swiper-button-nextBtn absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
-          />
+          <div className="h-48 absolute inset-0 w-full">
+            <Image
+              src="/prev.png"
+              alt="arrow-left"
+              width={36}
+              height={36}
+              onClick={handlePrev}
+              className="swiper-button-prevBtn absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+            />
+            <Image
+              src="/next.png"
+              alt="arrow-right"
+              width={36}
+              height={36}
+              onClick={handleNext}
+              className="swiper-button-nextBtn absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+            />
+          </div>
         </Swiper>
       </div>
     )

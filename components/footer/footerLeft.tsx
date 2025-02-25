@@ -19,18 +19,18 @@ const FooterLeft = () => {
       <div className="font-semibold">
         &#40;점심시간 13:00 - 14:00 제외 주말/공휴일 제외&#41;
       </div>
-      <div className="flex justify-between w-[350px] mb-12 mt-1 text-xs">
+      <div className="flex items-center gap-2 sm:w-[350px] w-auto mb-12 mt-1 text-xs ">
         <Button bgColor="blue" size="default" rounded onClick={onclickBtn}>
           <FaApple className="mr-4" />
-          APP STORE
+          APP
         </Button>
         <Button bgColor="blue" size="default" rounded onClick={onclickBtn}>
           <FaPlay className="mr-4" />
-          PLAY STORE
+          PLAY
         </Button>
       </div>
-      <div className="text-sm">
-        <div className="flex justify-between w-[350px] pb-2">
+      <div className="text-sm sm:block hidden">
+        <div className="flex justify-between w-[350px] pb-2 ">
           <div>이용약관</div>
           <div>개인정보처리방침</div>
           <div>사업자 정보확인</div>

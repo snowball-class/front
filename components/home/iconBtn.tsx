@@ -55,7 +55,7 @@ const IconBtn = () => {
   ]
 
   return (
-    <div className="w-full flex flex-wrap justify-around items-center mt-12 ">
+    <div className="w-full grid grid-cols-4 lg:grid-cols-8 gap-4 mt-12">
       {icons.map((icon) => (
         <Link
           href={`/subject/${icon.id}`}

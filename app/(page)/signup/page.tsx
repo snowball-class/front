@@ -25,7 +25,6 @@ const Signup = () => {
     nickname: '',
     email: '',
     password: '',
-    passwordCheck: '',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,13 +59,10 @@ const Signup = () => {
       onOpen()
       setTitle('이메일 형식이 올바르지 않습니다.')
       return
-    } else if (formData.password !== formData.passwordCheck) {
-      onOpen()
-      setTitle('비밀번호가 일치하지 않습니다.')
-      return
     }
     try {
-      const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
+      // const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
+      const url = 'apimember/join'
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -74,8 +70,9 @@ const Signup = () => {
         },
         body: JSON.stringify(formData),
       })
+      console.log(response)
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         onOpen()
         setTitle('회원가입이 완료되었습니다.')
         router.replace('/login')
@@ -94,7 +91,7 @@ const Signup = () => {
       <Title title="스노우볼에 오신 것을 환영합니다!" />
       <div className="w-full flex justify-center items-center mt-12">
         <div className="lg:w-1/3 w-[90%] bg-white rounded-md px-12 py-16">
-          <form method="POST" action="/api/auth/signup" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="text-gray-600 font-semibold  mt-4 mb-2">이름</div>
             <Input
               type="text"
@@ -132,17 +129,6 @@ const Signup = () => {
               onChange={handleChange}
               value={formData.password}
               name="password"
-              onKeyDown={pressEnter}
-            />
-            <div className="text-gray-600 font-semibold  mt-4 mb-2">
-              비밀번호 확인
-            </div>
-            <Input
-              type="password"
-              placeholder="비밀번호를 다시 입력해주세요"
-              onChange={handleChange}
-              value={formData.passwordCheck}
-              name="passwordCheck"
               onKeyDown={pressEnter}
             />
             <div className="my-4" />

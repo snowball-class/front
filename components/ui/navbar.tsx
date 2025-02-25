@@ -28,7 +28,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="w-3/4 mx-auto flex items-center justify-between mt-4 mb-12 relative">
+    <div className="w-3/4 mx-auto flex items-center justify-between  mt-4 mb-0 relative lg:mt-2 lg:mb-4">
       <div className="flex items-center">
         <Link href="/">
           <Image

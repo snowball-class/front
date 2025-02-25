@@ -20,11 +20,14 @@ export function generateOrderId() {
   return uuidv4()
 }
 
-export function pagingFunction(currentPage: number, totalData: any[]) {
-  const displayedDataLength = 8
+export function pagingFunction(
+  displayedDataLength: number,
+  currentPage: number,
+  totalData: any[]
+) {
   const totalPages = Math.ceil(totalData.length / displayedDataLength)
   const startIndex = (currentPage - 1) * displayedDataLength
-  const endIndex = startIndex + 7
+  const endIndex = startIndex + displayedDataLength - 1
   const displayedData: CardInfo[] = totalData.slice(startIndex, endIndex + 1)
 
   return { totalPages, displayedData }

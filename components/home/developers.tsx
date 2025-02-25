@@ -12,31 +12,31 @@ const Developers = () => {
     {
       name: '전찬의',
       image: 찬의,
-      description: '백엔드 개발자/관리자',
+      description: '백엔드/관리자',
       github: 'https://github.com/jerry0339',
     },
     {
       name: '안병현',
       image: 안병현,
-      description: '백엔드 개발자/결제',
+      description: '백엔드/결제',
       github: 'https://github.com/bhyunnie',
     },
     {
       name: '김남주',
       image: 김남주,
-      description: '백엔드 개발자/회원관리',
+      description: '백엔드/회원',
       github: 'https://github.com/anjoo-k',
     },
     {
       name: '이다솔',
       image: 다솔,
-      description: '백엔드 개발자/강의',
+      description: '백엔드/강의',
       github: 'https://github.com/Leedasol2',
     },
     {
       name: '정길웅',
       image: 정길웅,
-      description: '프론트 개발자',
+      description: '프론트',
       github: 'https://github.com/doggysummer',
     },
   ]
@@ -45,7 +45,7 @@ const Developers = () => {
       <div className="text-2xl font-bold mb-4">
         눈송이의 개발자를 소개합니다!
       </div>
-      <div className="flex justify-around">
+      <div className="grid grid-cols-3 xl:grid-cols-5 gap-8 xl:gap-4">
         {developerInfo.map((developer, i) => (
           <Link href={developer.github} key={i}>
             <div className="flex flex-col items-center">

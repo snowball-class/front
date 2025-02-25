@@ -1,13 +1,36 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ClassroomTopContent from '@/components/classroom/topContent'
 import Tab from '@/components/classroom/tab'
 import ReplyList from '@/components/classroom/replyList'
 import Description from '@/components/classroom/description'
+import { ClassroomDetail } from '@/types'
 
 const Classroom = ({ params }: { params: { id: string } }) => {
   const { id } = params
+  const url = `/apilesson/Lesson/details/${id}`
+  const [classData, setClassData] = useState<ClassroomDetail>()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url)
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        console.log(data)
+        setClassData(data.data)
+      } catch (error) {
+        console.error('Fetch error details:', error)
+      }
+    }
+
+    fetchData()
+  }, [url])
+
   const replyList = [
     {
       id: '1',
@@ -47,15 +70,12 @@ const Classroom = ({ params }: { params: { id: string } }) => {
     setCurrentTab(index)
   }
 
-  const classData = {
-    id: id,
-    category: '영어',
-    title: 'RP11 이거 하나로 끝!',
-    price: 50000,
-    starCount: 3,
-  }
   const tabList = [
-    { id: 0, tabName: '클래스 설명', tabContent: <Description /> },
+    {
+      id: 0,
+      tabName: '클래스 설명',
+      tabContent: <Description {...classData} />,
+    },
     {
       id: 1,
       tabName: '클래스 후기',

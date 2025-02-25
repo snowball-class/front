@@ -29,18 +29,19 @@ const Subject = async ({ params }: { params: { id: string } }) => {
   const cardInfo = await data.json()
   const cards = cardInfo.data
   return (
-    <div className="mt-12 w-3/4 mx-auto relative">
+    <div className="mt-12 mx-auto relative">
       <Image
-        src={bannerPic[Number(id)-1]}
+        src={bannerPic[Number(id) - 1]}
         alt="banner"
-        className="w-full aspect-[1140/300] object-cover "
+        className="w-screen lg:w-3/4 max-w-[100vw] mx-auto aspect-[1140/300] object-cover "
       />
-      <IconBtn />
-      <div className="text-2xl font-bold mt-12 mb-4">
-        {bannerInfo[Number(id)-1].title}
+      <div className="lg:w-3/4 w-[90%] mx-auto">
+        <IconBtn />
+        <div className="text-2xl font-bold mt-12 mb-4">
+          {bannerInfo[Number(id) - 1].title}
+        </div>
+        <CardList cards={cards} />
       </div>
-
-      <CardList cards={cards} />
     </div>
   )
 }

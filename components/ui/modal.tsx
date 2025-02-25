@@ -25,7 +25,7 @@ export default function Modal() {
               &#8203;
             </span>
 
-            <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-gray-800">
+            <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle w-[32rem]">
               <div className="px-4 pt-5 pb-4 bg-white dark:bg-gray-800 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -61,7 +61,7 @@ export default function Modal() {
               </div>
               <button
                 onClick={onClose}
-                className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                className="absolute hidden sm:block top-0 right-0 m-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
               >
                 <X className="w-6 h-6" />
               </button>
