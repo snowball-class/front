@@ -12,7 +12,7 @@ export function validateEmail(email: string) {
   return emailRegex.test(email)
 }
 
-export function formatPrice(price: number) {
+export function formatPrice(price: number | string) {
   return price.toLocaleString('ko-KR')
 }
 

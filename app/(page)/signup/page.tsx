@@ -61,8 +61,7 @@ const Signup = () => {
       return
     }
     try {
-      // const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
-      const url = 'apimember/join'
+      const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
       const response = await fetch(url, {
         method: 'POST',
         headers: {

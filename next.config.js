@@ -1,16 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
+  images: {
+    remotePatterns: [
       {
-        source: '/apilesson/:path*',
-        destination: 'http://snowball-class.shop:30002/:path*',
+        hostname: 'snowball-bucket.s3.ap-northeast-2.amazonaws.com',
       },
-      {
-        source: '/apimember/:path*',
-        destination: 'http://snowball-class.shop:30001/:path*',
-      },
-    ]
+    ],
   },
 }
 

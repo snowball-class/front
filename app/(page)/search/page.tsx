@@ -3,14 +3,15 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { CardInfo } from '@/types'
 const Search = async ({ searchParams }: { searchParams: { q: string } }) => {
   const search = searchParams.q
-  const url = process.env.NEXT_PUBLIC_LESSON_API + '/Lesson/search/' + search
+  const url = process.env.NEXT_PUBLIC_LESSON_API + '/lessons/search/' + search
   let cardData: CardInfo[] = []
   try {
     const res = await fetch(url, {
       method: 'GET',
     })
     const data = await res.json()
-    cardData = data.data
+    cardData = data.data.content
+    console.log(cardData)
   } catch (error) {
     console.error(error)
   }

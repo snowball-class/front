@@ -9,7 +9,7 @@ import { ClassroomDetail } from '@/types'
 
 const Classroom = ({ params }: { params: { id: string } }) => {
   const { id } = params
-  const url = `/apilesson/Lesson/details/${id}`
+  const url = process.env.NEXT_PUBLIC_VIEW_API + `/lessons/view/${id}`
   const [classData, setClassData] = useState<ClassroomDetail>()
   useEffect(() => {
     const fetchData = async () => {

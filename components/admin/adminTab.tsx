@@ -6,6 +6,8 @@ import AddEvent from './addEvent'
 import { TabSingle } from '@/types'
 import SubTab from './subTab'
 import UserAdmin from './user/userAdmin'
+import CreateLesson from './lesson/createLesson'
+import ModifyLesson from './lesson/modifyLesson'
 
 const AdminTab = () => {
   const [currentTab, setCurrentTab] = useState(0)
@@ -29,9 +31,9 @@ const AdminTab = () => {
     { id: 2, tabName: '이벤트 삭제', tabContent: <AddEvent /> },
   ]
   const classTabList = [
-    { id: 0, tabName: '클래스 추가', tabContent: <AddEvent /> },
-    { id: 1, tabName: '클래스 수정', tabContent: <AddEvent /> },
-    { id: 2, tabName: '클래스 삭제', tabContent: <AddEvent /> },
+    { id: 0, tabName: '레슨 추가', tabContent: <CreateLesson /> },
+    { id: 1, tabName: '레슨 수정', tabContent: <ModifyLesson /> },
+    { id: 2, tabName: '레슨 삭제', tabContent: <AddEvent /> },
   ]
   const mainTabList: TabSingle[] = [
     {
@@ -58,7 +60,7 @@ const AdminTab = () => {
     },
     {
       id: 2,
-      tabName: '클래스관리',
+      tabName: '레슨관리',
       tabContent: (
         <SubTab
           tabList={classTabList}

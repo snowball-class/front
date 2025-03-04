@@ -9,15 +9,15 @@ export interface BannerInfo {
 export interface CardInfo {
   lessonId: number
   title: string
+  tutor: string
   categoryId: number
-  description: string
-  netPrice: number
-  salePrice: number
-  thumbnail: string
-  eventId: number
-  discountRate: number
-  discountStartDate: string
-  discountFinishDate: string
+  categoryName: string
+  price: number
+  content1: string
+  content2: string | null
+  thumbnailUrl: string
+  videoUrl: string
+  createdAt: string
 }
 
 export interface InputProps {

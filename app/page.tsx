@@ -6,11 +6,10 @@ import Carousel from '@/components/ui/carousel'
 import { bannerInfo } from '@/constants'
 
 export default async function Home() {
-  const url = process.env.NEXT_PUBLIC_LESSON_API + '/Lesson/category/' + '8'
+  const url = process.env.NEXT_PUBLIC_LESSON_API + '/lessons/category/' + '8'
 
   const data = await fetch(url)
   const cardInfo = await data.json()
-
   return (
     <div className=" md:w-3/4 mx-auto relative mb-12 object-cover w-[90%]">
       <div className="aspect-[1140/300]">
@@ -20,7 +19,7 @@ export default async function Home() {
       <Popular />
       <ClassListHome
         title="영어인척 하지만 실은 개발입니다"
-        cardList={cardInfo.data}
+        cardList={cardInfo.data.content}
       />
       <Developers />
     </div>

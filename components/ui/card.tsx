@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { CardInfo } from '@/types'
 import Link from 'next/link'
@@ -13,9 +13,9 @@ interface CardProps {
 const Card = ({ cardInfo }: CardProps) => {
   return (
     <Link href={`/classroom/${cardInfo.lessonId}`}>
-      {cardInfo.thumbnail ? (
+      {cardInfo.thumbnailUrl ? (
         <Image
-          src={cardInfo.thumbnail}
+          src={cardInfo.thumbnailUrl}
           alt={cardInfo.title}
           width={300}
           height={10}
@@ -24,7 +24,7 @@ const Card = ({ cardInfo }: CardProps) => {
         <div className="w-full h-48 bg-gray-200"></div>
       )}
       <div className="my-1">{cardInfo.title}</div>
-      <div className="text-sm">{formatPrice(cardInfo.netPrice) + '원'}</div>
+      <div className="text-sm">{formatPrice(cardInfo?.price ?? 0)}원</div>
     </Link>
   )
 }

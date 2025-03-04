@@ -41,7 +41,7 @@ const Login = () => {
     } else {
       try {
         const response = await fetch(
-          process.env.NEXT_PUBLIC_MEMBER_API + '/sign-in',
+          process.env.NEXT_PUBLIC_MEMBER_API + '/login',
           {
             method: 'POST',
             headers: {
