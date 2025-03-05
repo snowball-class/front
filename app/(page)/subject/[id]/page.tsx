@@ -24,10 +24,10 @@ const Subject = async ({ params }: { params: { id: string } }) => {
     banner07,
     banner08,
   ]
-  const url = process.env.NEXT_PUBLIC_LESSON_API + '/Lesson/category/' + id
+  const url = process.env.NEXT_PUBLIC_LESSON_API + '/lessons/category/' + id
   const data = await fetch(url)
   const cardInfo = await data.json()
-  const cards = cardInfo.data
+  const cards = cardInfo.data.content
   return (
     <div className="mt-12 mx-auto relative">
       <Image
