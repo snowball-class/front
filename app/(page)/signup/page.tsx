@@ -61,17 +61,23 @@ const Signup = () => {
       return
     }
     try {
-      const url = process.env.NEXT_PUBLIC_MEMBER_API + '/join'
+      const queryParmas = new URLSearchParams()
+      queryParmas.append('name', formData.name)
+      queryParmas.append('nickname', formData.nickname)
+      queryParmas.append('email', formData.email)
+      queryParmas.append('password', formData.password)
+      const url =
+        process.env.NEXT_PUBLIC_MEMBER_API +
+        '/join' +
+        '?' +
+        queryParmas.toString()
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
       })
-      console.log(response)
-
-      if (response.status === 201) {
+      if (response.status === 200) {
         onOpen()
         setTitle('회원가입이 완료되었습니다.')
         router.replace('/login')

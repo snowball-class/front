@@ -26,35 +26,41 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.email === null) {
-      onOpen()
-      setTitle('이메일을 입력해주세요')
-      return
-    } else if (formData.password === null) {
+    if (formData.password === null) {
       onOpen()
       setTitle('패스워드를 입력해주세요')
       return
-    } else if (!validateEmail(formData.email)) {
+    } else if (formData.email === null) {
       onOpen()
-      setTitle('유효한 이메일 주소를 입력해주세요.')
+      setTitle('유저 이름을 입력해주세요.')
       return
     } else {
       try {
+        const formBody = new URLSearchParams({
+          username: formData.email,
+          password: formData.password,
+        }).toString()
+
         const response = await fetch(
           process.env.NEXT_PUBLIC_MEMBER_API + '/login',
           {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(formData),
+            body: formBody,
           }
         )
-        console.error(response)
+        response.headers.forEach((v, k) => {
+          console.log(v)
+        })
         if (response.status === 200) {
-          const data = await response.json()
+          const data = await response.text()
+          const authHeader = response.headers.get('Authorization')
+          console.log(response)
           console.log(data)
-          localStorage.setItem('token', data.data.token)
+          console.log(authHeader)
+
           onOpen()
           setTitle('로그인에 성공했습니다.')
           router.replace('/')
@@ -65,7 +71,7 @@ const Login = () => {
           return
         }
       } catch (error) {
-        console.error('로그인 오류:', error)
+        console.error(error)
         setTitle('아이디 또는 비밀번호가 일치하지 않습니다.')
         onOpen()
         return
@@ -84,7 +90,7 @@ const Login = () => {
       <Title title="로그인" />
       <div className="w-full flex justify-center items-center mt-12">
         <div className="lg:w-1/3 w-[90%] bg-white rounded-md px-12 py-16">
-          <div className="text-gray-600 font-semibold">이메일</div>
+          <div className="text-gray-600 font-semibold">유저 이름</div>
           <input
             className="w-full h-10 rounded-md border border-gray-300 outline-none px-2 py-2 my-4"
             type="text"
@@ -105,7 +111,7 @@ const Login = () => {
             onKeyDown={pressEnter}
           />
           <Button bgColor="blue" size="long" onClick={handleSubmit}>
-            이메일 로그인
+            로그인
           </Button>
           <Link
             href="/signup"
