@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ko } from 'date-fns/locale'
 
 import Input from '../ui/input'
@@ -10,22 +10,56 @@ import { Button } from '../ui/button'
 import EventList from './event/eventList'
 
 const AddEvent = () => {
-  const [title, setTitle] = useState('')
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value)
+  const [lessonIds, setLessonIds] = useState('')
+
+  const handleLessonIdsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLessonIds(e.target.value)
   }
   const [date, setDate] = React.useState<DateRange | undefined>()
 
   const [form, setForm] = useState({
+    issuer: 'Jerry',
     title: '',
-    dateFrom: date?.from,
-    dateTo: date?.to,
+    discountRate: 0,
+    startDateTime: '',
+    endDateTime: '',
+    lessonIds: [],
   })
-  const [classes, setClasses] = useState([
-    '거리두기 해제! 보복회식엔 황태미역국',
-    '봉고데기 입문',
-    '밥 한공기 뚝딱! 사먹는 김치찌게 대신 만드는 햄 김치찌게',
-  ])
+
+  useEffect(() => {
+    if (date?.from && date?.to) {
+      setForm((prev) => ({
+        ...prev,
+        startDateTime: date?.from?.toISOString() ?? '',
+        endDateTime: date?.to?.toISOString() ?? '',
+      }))
+    }
+  }, [date])
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const splitLessonIds = (value: string) => {
+    return value.split(',').map(Number)
+  }
+
+  const handleAddEvent = async () => {
+    console.log(form)
+    // const url = process.env.NEXT_PUBLIC_ADMIN_API + '/event'
+
+    // const response = await fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify(form),
+    // })
+    // if (response.ok) {
+    //   alert('이벤트가 성공적으로 추가되었습니다.')
+    // }
+  }
 
   return (
     <div className="w-1/2 mt-6 ">
@@ -34,8 +68,19 @@ const AddEvent = () => {
         <Input
           placeholder="이벤트 제목을 입력해주세요"
           type="text"
-          value={title}
-          onChange={handleTitleChange}
+          name="title"
+          value={form.title}
+          onChange={handleFormChange}
+        />
+      </div>
+      <div className="flex justify-between items-center mb-6">
+        <div className="w-1/2">할인율 (%)</div>
+        <Input
+          placeholder="할인율을 입력해주세요"
+          type="number"
+          name="discountRate"
+          value={form.discountRate.toString()}
+          onChange={handleFormChange}
         />
       </div>
       <div className="flex justify-between items-center mb-6">
@@ -49,21 +94,21 @@ const AddEvent = () => {
         />
       </div>
       <div className="flex justify-between items-center mb-6">
-        <div className="w-1/2">이벤트에 해당하는 클래스</div>
+        <div className="w-1/2">레슨 아이디를 ,로 나누어 입력해주세요</div>
         <Input
-          placeholder="클래스 제목을 입력해주세요"
+          placeholder="레슨 아이디를 ,로 나누어 입력해주세요"
           type="text"
-          value={title}
-          onChange={handleTitleChange}
+          value={lessonIds}
+          onChange={handleLessonIdsChange}
         />
       </div>
       <div className="flex flex-wrap gap-4"></div>
       <div className="w-1/2 mx-auto mb-12">
-        <Button bgColor="blue" size="long">
+        <Button bgColor="blue" size="long" onClick={handleAddEvent}>
           이벤트 추가
         </Button>
       </div>
-      <EventList search={title} />
+      {/* <EventList search={lessonIds} /> */}
     </div>
   )
 }

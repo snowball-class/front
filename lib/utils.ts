@@ -32,3 +32,7 @@ export function pagingFunction(
 
   return { totalPages, displayedData }
 }
+
+export function formatDate(dateString: string) {
+  return dateString.split('T')[0]
+}

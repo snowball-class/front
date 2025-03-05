@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 
 const EventList = ({ search }: { search: string }) => {
-  const url = process.env.NEXT_PUBLIC_LESSON_API + '/Lesson/search/' + search
+  const url = process.env.NEXT_PUBLIC_LESSON_API + '/lessons/search/' + search
   let cardData: CardInfo[] = []
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ const EventList = ({ search }: { search: string }) => {
         >
           <div className="relative w-full h-48">
             <Image
-              src={card.thumbnail || ''}
+              src={card.thumbnailUrl || ''}
               alt={card.title}
               fill
               className="object-cover rounded-t-lg"
@@ -45,7 +45,7 @@ const EventList = ({ search }: { search: string }) => {
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
               {card.title}
             </h2>
-            <p className="text-gray-600 text-sm">{card.description}</p>
+            <p className="text-gray-600 text-sm">{card.price}</p>
           </div>
         </div>
       ))}

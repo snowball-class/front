@@ -119,20 +119,26 @@ export interface CartState {
   deleteItem: (item: ItemDetail) => void
 }
 
-export interface ClassroomDetail {
-  lessonId?: number
-  categoryId?: number
-  categoryName?: string
-  title?: string
-  content1?: string
-  content2?: string | null
-  thumbnail?: string
-  tutor?: string
-  netPrice?: number
-  salePrice?: number
-  starRating?: number
-  eventId?: number
-  discountRate?: number
-  discountStartDate?: string | null
-  discountFinishDate?: string | null
+export interface LessonDetail {
+  lessonId: number
+  categoryId: number
+  categoryName: string
+  title: string
+  content1: string
+  content2: string | null
+  thumbnailUrl: string
+  videoUrl: string
+  tutor: string
+  price: number
+  discountedPrice?: number
+  averageStarScore?: number
+  numOfStudents?: number
+  createdAt: string
+}
+
+export interface ReviewList {
+  content: string
+  createdAt: string
+  starScore: number
+  writer: string
 }

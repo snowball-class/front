@@ -1,14 +1,17 @@
 'use client'
 
-import { ReplyListProps, ReplyProps } from '@/types'
 import Reply from './reply'
+import { ReviewList } from '@/types'
 
-const ReplyList = (props: ReplyListProps) => {
-  const { replyList } = props
+interface ReplyListProps {
+  reviewList: ReviewList[]
+}
+
+const ReplyList = ({ reviewList }: ReplyListProps) => {
   return (
     <div>
-      {replyList.map((reply: ReplyProps) => {
-        return <Reply key={reply.id} reply={reply} />
+      {reviewList.map((reply: ReviewList) => {
+        return <Reply key={reply.writer} reply={reply} />
       })}
     </div>
   )
