@@ -142,3 +142,10 @@ export interface ReviewList {
   starScore: number
   writer: string
 }
+
+export interface Profile {
+  email: string
+  joinDate: string
+  name: string
+  nickname: string
+}

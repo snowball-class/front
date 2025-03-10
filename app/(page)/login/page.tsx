@@ -51,16 +51,10 @@ const Login = () => {
             body: formBody,
           }
         )
-        response.headers.forEach((v, k) => {
-          console.log(v)
-        })
         if (response.status === 200) {
-          const data = await response.text()
           const authHeader = response.headers.get('Authorization')
-          console.log(response)
-          console.log(data)
-          console.log(authHeader)
-
+          const token = authHeader?.replace('Bearer ', '') ?? ''
+          localStorage.setItem('token', token ?? '')
           onOpen()
           setTitle('로그인에 성공했습니다.')
           router.replace('/')

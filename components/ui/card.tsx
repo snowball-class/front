@@ -18,7 +18,8 @@ const Card = ({ cardInfo }: CardProps) => {
           src={cardInfo.thumbnailUrl}
           alt={cardInfo.title}
           width={300}
-          height={10}
+          height={300}
+          className="w-full aspect-square"
         />
       ) : (
         <div className="w-full h-48 bg-gray-200"></div>

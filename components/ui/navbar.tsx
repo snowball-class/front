@@ -10,12 +10,13 @@ import { useRouter } from 'next/navigation'
 import { useModalStore } from '@/lib/store'
 const Navbar = () => {
   const router = useRouter()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
+  const { onOpen, setTitle, setHandleSubmit, onClose } = useModalStore()
+
   useEffect(() => {
     const token = localStorage.getItem('token')
-    setIsLoggedIn(token ? true : false)
+    setIsLoggedIn(!!token)
   }, [])
-  const { onOpen, setTitle, setHandleSubmit, onClose } = useModalStore()
 
   const handleLogout = () => {
     onOpen()
@@ -44,7 +45,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex">
-        {isLoggedIn ? (
+        {isLoggedIn === true ? (
           <>
             <div className="p-2 cursor-pointer mr-4" onClick={handleLogout}>
               로그아웃
@@ -59,7 +60,7 @@ const Navbar = () => {
               마이 페이지
             </Button>
           </>
-        ) : (
+        ) : isLoggedIn === false ? (
           <>
             <Link href="/login">
               <div className="p-2 cursor-pointer mr-4">로그인</div>
@@ -70,7 +71,7 @@ const Navbar = () => {
               </Button>
             </Link>
           </>
-        )}
+        ) : null}
       </div>
     </div>
   )
