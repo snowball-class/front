@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Tab from '../classroom/tab'
-import AddEvent from './addEvent'
+import AddEvent from './event/addEvent'
 import { TabSingle } from '@/types'
 import SubTab from './subTab'
 import UserAdmin from './user/userAdmin'

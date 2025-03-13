@@ -12,11 +12,11 @@ const Navbar = () => {
   const router = useRouter()
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
   const { onOpen, setTitle, setHandleSubmit, onClose } = useModalStore()
-
+  const [token, setToken] = useState<string | null>(null)
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    setToken(localStorage.getItem('token'))
     setIsLoggedIn(!!token)
-  }, [])
+  }, [token])
 
   const handleLogout = () => {
     onOpen()
