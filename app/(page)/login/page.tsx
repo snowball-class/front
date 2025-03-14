@@ -10,7 +10,7 @@ import { useModalStore } from '@/lib/store'
 
 const Login = () => {
   const router = useRouter()
-  const { onOpen, isOpen, title, content, setTitle, setContent } =
+  const { onOpen, isOpen, title, setHandleSubmit, setTitle, onClose } =
     useModalStore()
   const [formData, setFormData] = useState({
     email: '',
@@ -24,8 +24,11 @@ const Login = () => {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+    setHandleSubmit(() => {
+      onClose()
+    })
     if (formData.password === null) {
       onOpen()
       setTitle('패스워드를 입력해주세요')
@@ -57,7 +60,10 @@ const Login = () => {
           localStorage.setItem('token', token ?? '')
           onOpen()
           setTitle('로그인에 성공했습니다.')
-          router.replace('/')
+          setHandleSubmit(() => {
+            onClose()
+            router.replace('/')
+          })
           return
         } else {
           setTitle('아이디 또는 비밀번호가 일치하지 않습니다.')
@@ -75,7 +81,7 @@ const Login = () => {
 
   const pressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSubmit(e)
+      handleLogin(e)
     }
   }
 
@@ -104,7 +110,7 @@ const Login = () => {
             onChange={handleChange}
             onKeyDown={pressEnter}
           />
-          <Button bgColor="blue" size="long" onClick={handleSubmit}>
+          <Button bgColor="blue" size="long" onClick={handleLogin}>
             로그인
           </Button>
           <Link
